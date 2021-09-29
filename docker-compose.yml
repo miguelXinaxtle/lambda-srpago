@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - AWS_ACCESS_KEY_ID=SRPAGOTEST
+      - AWS_SECRET_ACCESS_KEY=SRPAGOTEST
+      - AWS_DEFAULT_REGION=us-east-1
+      - EDGE_PORT=4566
+      - SERVICES=dynamodb,lambda,s3,cloudformation,sts,apigateway,iam,route53
+      - KINESIS_PROVIDER=kinesalite
+      - DEBUG=1
+      - LAMBDA_EXECUTOR=local
+      - DATA_DIR=/tmp/localstack/data
+      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - START_WEB=1
+    ports:
+      - "4566-4597:4566-4597"
+    volumes:
+      - "${TEMPDIR:-/tmp/localstack}:/temp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
