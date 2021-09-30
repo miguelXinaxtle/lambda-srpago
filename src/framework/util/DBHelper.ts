@@ -10,13 +10,10 @@ export class DBHelper implements IDBHelper {
   }
 
   put = async (tableName: string, item: { [key: string]: any }) => {
-    console.log("Table", tableName);
-    console.log("item", item);
-    console.log("---- insertado o actualizado en DBHelper ----");
-    // const input: DynamoDB.DocumentClient.PutItemInput = {
-    //   TableName: tableName,
-    //   Item: item,
-    // };
-    // await this.docClient.put(input).promise();
+    const input: DynamoDB.DocumentClient.PutItemInput = {
+      TableName: tableName,
+      Item: item,
+    };
+    await this.docClient.put(input).promise();
   };
 }

@@ -14,7 +14,11 @@ export class UserController {
   createUser = async (
     event: APIGatewayProxyEvent
   ): Promise<APIGatewayProxyResult> => {
-    const user: User = UserSchema.parse(JSON.parse(event.body!));
+    const user: User = UserSchema.parse({
+      name: "Renata",
+      email: "renata.reyes@hotmail.com",
+    });
+    // const user: User = UserSchema.parse(JSON.parse(event.body!));
     await this.createUserUseCase.execute(user);
     const response: APIGatewayProxyResult = {
       statusCode: 200,

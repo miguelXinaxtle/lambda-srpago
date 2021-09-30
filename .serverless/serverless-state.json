@@ -186,7 +186,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/localstack-lambda/local/1632938162008-2021-09-29T17:56:02.008Z/localstack-lambda.zip"
+                "S3Key": "serverless/localstack-lambda/local/1633011380044-2021-09-30T14:16:20.044Z/localstack-lambda.zip"
               },
               "Handler": "handler.hello",
               "Runtime": "nodejs12.x",
@@ -211,7 +211,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/localstack-lambda/local/1632938162008-2021-09-29T17:56:02.008Z/localstack-lambda.zip"
+                "S3Key": "serverless/localstack-lambda/local/1633011380044-2021-09-30T14:16:20.044Z/localstack-lambda.zip"
               },
               "Handler": "src/lambda/CreateUser.handler",
               "Runtime": "nodejs12.x",
@@ -236,7 +236,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/localstack-lambda/local/1632938162008-2021-09-29T17:56:02.008Z/localstack-lambda.zip"
+                "S3Key": "serverless/localstack-lambda/local/1633011380044-2021-09-30T14:16:20.044Z/localstack-lambda.zip"
               },
               "Handler": "src/lambda/UpdateUser.handler",
               "Runtime": "nodejs12.x",
@@ -254,34 +254,34 @@
               "UpdateUserLogGroup"
             ]
           },
-          "HelloLambdaVersionKYVGrvguCoQK1d9PqpeZiowhOdK0tHINq8rNQqBVfs": {
+          "HelloLambdaVersionFdDXH1bfNa6KHHU1J0TVDztK4sFvDs9yQeH5GSqaKs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "bs9kjyexBk5nZi0BWCTW3sOS4TWTxHe9B8WP09Xe+0U="
+              "CodeSha256": "k4cxd1tMSZN1CIrGHSMXhPZeLdlb2GmgIoUZ3RhrcvU="
             }
           },
-          "CreateUserLambdaVersionfCV3RPBMYI1Mu7FeidsyAzWzxQUKDBtGMvm8opGA": {
+          "CreateUserLambdaVersiondpg11ha5hhATQ9BXNH3BLyWVrMo315n2ntnebOio": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateUserLambdaFunction"
               },
-              "CodeSha256": "bs9kjyexBk5nZi0BWCTW3sOS4TWTxHe9B8WP09Xe+0U="
+              "CodeSha256": "k4cxd1tMSZN1CIrGHSMXhPZeLdlb2GmgIoUZ3RhrcvU="
             }
           },
-          "UpdateUserLambdaVersion46Y6z8dbWTlfNCAiYzWjHtasusBRIhH5nVCcBaa70": {
+          "UpdateUserLambdaVersionzMA5LrEHaucy6fDBSrWeygV5YqKsSiaLluFlQjriN4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateUserLambdaFunction"
               },
-              "CodeSha256": "bs9kjyexBk5nZi0BWCTW3sOS4TWTxHe9B8WP09Xe+0U="
+              "CodeSha256": "k4cxd1tMSZN1CIrGHSMXhPZeLdlb2GmgIoUZ3RhrcvU="
             }
           },
           "ApiGatewayRestApi": {
@@ -476,7 +476,7 @@
               "UpdateUserLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1632938132272": {
+          "ApiGatewayDeployment1633011351728": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -614,7 +614,7 @@
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersionKYVGrvguCoQK1d9PqpeZiowhOdK0tHINq8rNQqBVfs"
+              "Ref": "HelloLambdaVersionFdDXH1bfNa6KHHU1J0TVDztK4sFvDs9yQeH5GSqaKs"
             },
             "Export": {
               "Name": "sls-localstack-lambda-local-HelloLambdaFunctionQualifiedArn"
@@ -623,7 +623,7 @@
           "CreateUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateUserLambdaVersionfCV3RPBMYI1Mu7FeidsyAzWzxQUKDBtGMvm8opGA"
+              "Ref": "CreateUserLambdaVersiondpg11ha5hhATQ9BXNH3BLyWVrMo315n2ntnebOio"
             },
             "Export": {
               "Name": "sls-localstack-lambda-local-CreateUserLambdaFunctionQualifiedArn"
@@ -632,7 +632,7 @@
           "UpdateUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateUserLambdaVersion46Y6z8dbWTlfNCAiYzWjHtasusBRIhH5nVCcBaa70"
+              "Ref": "UpdateUserLambdaVersionzMA5LrEHaucy6fDBSrWeygV5YqKsSiaLluFlQjriN4"
             },
             "Export": {
               "Name": "sls-localstack-lambda-local-UpdateUserLambdaFunctionQualifiedArn"
@@ -789,7 +789,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersionKYVGrvguCoQK1d9PqpeZiowhOdK0tHINq8rNQqBVfs"
+        "versionLogicalId": "HelloLambdaVersionFdDXH1bfNa6KHHU1J0TVDztK4sFvDs9yQeH5GSqaKs"
       },
       "createUser": {
         "handler": "src/lambda/CreateUser.handler",
@@ -814,7 +814,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CreateUserLambdaVersionfCV3RPBMYI1Mu7FeidsyAzWzxQUKDBtGMvm8opGA"
+        "versionLogicalId": "CreateUserLambdaVersiondpg11ha5hhATQ9BXNH3BLyWVrMo315n2ntnebOio"
       },
       "updateUser": {
         "handler": "src/lambda/UpdateUser.handler",
@@ -839,7 +839,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "UpdateUserLambdaVersion46Y6z8dbWTlfNCAiYzWjHtasusBRIhH5nVCcBaa70"
+        "versionLogicalId": "UpdateUserLambdaVersionzMA5LrEHaucy6fDBSrWeygV5YqKsSiaLluFlQjriN4"
       }
     },
     "configValidationMode": "warn",
@@ -864,10 +864,10 @@
     },
     "layers": {},
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "/Users/miguelreyes/Documents/konfio/temporal/localstack-lambda/localstack-lambda/.build/.serverless/localstack-lambda.zip"
+    "artifact": "/Users/miguelreyes/Documents/GitHub/lambda-srpago/.build/.serverless/localstack-lambda.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/localstack-lambda/local/1632938162008-2021-09-29T17:56:02.008Z",
+    "artifactDirectoryName": "serverless/localstack-lambda/local/1633011380044-2021-09-30T14:16:20.044Z",
     "artifact": "localstack-lambda.zip"
   }
 }
