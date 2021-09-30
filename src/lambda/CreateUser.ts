@@ -1,34 +1,22 @@
-import { S3Helper } from "./../framework/util/S3Helper";
-import "reflect-metadata";
-import { diContainer } from "../framework/util/DIRegister";
 import {
-  Handler,
   APIGatewayProxyEvent,
-  Context,
   APIGatewayProxyResult,
+  Context,
+  Handler,
 } from "aws-lambda";
-import { UserController } from "../application/controllers/UserController";
+import "reflect-metadata";
+import { BuildResultHelper } from "../framework/util/BuildResultHelper";
+import { S3Helper } from "./../framework/util/S3Helper";
 
 export const handler: Handler = async (
   event: APIGatewayProxyEvent,
   context: Context
 ): Promise<APIGatewayProxyResult> => {
-  let res = "1";
   try {
     const s3Helper = new S3Helper();
-    res = "2";
-    res = await s3Helper.get("onexlab", "test.json");
+    const s3Data: string = await s3Helper.get('onexlab', "example.json"); // Change for event values
+    return BuildResultHelper.build(s3Data, 200);
   } catch (err) {
-    console.log(err);
-    console.info(err);
-    res = "20: " + JSON.stringify(err);
+    return BuildResultHelper.build(err, 200);
   }
-  const response: APIGatewayProxyResult = {
-    statusCode: 200,
-    body: JSON.stringify({
-      success: res,
-    }),
-  };
-
-  return response;
 };
