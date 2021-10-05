@@ -20,12 +20,6 @@ provider:
   lambdaHashingVersion: 20201221
 
 functions:
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: hello
-          method: get
   createUser:
     handler: src/lambda/CreateUser.handler
     events:
@@ -38,3 +32,15 @@ functions:
       - http:
           path: serverlessSetup/user
           method: put
+  uploadRegisterUsers:
+    handler: src/lambda/UploadRegisterUsers.handler
+    events:
+      - http:
+          path: serverlessSetup/users
+          method: post
+  getUsers:
+    handler: src/lambda/GetUsers.handler
+    events:
+      - http:
+          path: serverlessSetup/users
+          method: get

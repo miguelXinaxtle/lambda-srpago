@@ -20,6 +20,19 @@ class DBHelper {
             };
             yield this.docClient.put(input).promise();
         });
+        this.get = (tableName) => __awaiter(this, void 0, void 0, function* () {
+            const input = {
+                TableName: tableName,
+            };
+            const result = yield this.docClient.scan(input).promise();
+            return result.Items
+                ? result.Items.map((item) => ({
+                    id: item.id,
+                    name: item.name,
+                    email: item.email,
+                }))
+                : [];
+        });
         this.docClient = new aws_sdk_1.DynamoDB.DocumentClient();
     }
 }

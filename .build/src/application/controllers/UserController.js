@@ -25,9 +25,11 @@ exports.UserController = void 0;
 const tsyringe_1 = require("tsyringe");
 const User_1 = require("../../core/types/User");
 let UserController = class UserController {
-    constructor(createUserUseCase, updateUserUseCase) {
+    constructor(createUserUseCase, updateUserUseCase, registerUserUseCase, getUsersUseCase) {
         this.createUserUseCase = createUserUseCase;
         this.updateUserUseCase = updateUserUseCase;
+        this.registerUserUseCase = registerUserUseCase;
+        this.getUsersUseCase = getUsersUseCase;
         this.createUser = (event) => __awaiter(this, void 0, void 0, function* () {
             const user = User_1.UserSchema.parse({
                 name: "Renata",
@@ -53,13 +55,38 @@ let UserController = class UserController {
             };
             return response;
         });
+        this.registerUsers = (event) => __awaiter(this, void 0, void 0, function* () {
+            const urlFile = "testExcel.xlsx";
+            const file = yield this.registerUserUseCase.execute(urlFile);
+            const response = {
+                statusCode: 200,
+                body: JSON.stringify({
+                    success: true,
+                    data: file,
+                }),
+            };
+            return response;
+        });
+        this.getUsers = (event) => __awaiter(this, void 0, void 0, function* () {
+            const userList = yield this.getUsersUseCase.execute();
+            const response = {
+                statusCode: 200,
+                body: JSON.stringify({
+                    success: true,
+                    data: userList,
+                }),
+            };
+            return response;
+        });
     }
 };
 UserController = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)("ICreateUserUseCase")),
     __param(1, (0, tsyringe_1.inject)("IUpdateUserUseCase")),
-    __metadata("design:paramtypes", [Object, Object])
+    __param(2, (0, tsyringe_1.inject)("IRegisterUserUseCase")),
+    __param(3, (0, tsyringe_1.inject)("IGetUsersUseCase")),
+    __metadata("design:paramtypes", [Object, Object, Object, Object])
 ], UserController);
 exports.UserController = UserController;
 //# sourceMappingURL=UserController.js.map

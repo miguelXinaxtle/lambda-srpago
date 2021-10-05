@@ -22,6 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserSchema = void 0;
 const z = __importStar(require("zod"));
 exports.UserSchema = z.object({
+    id: z.string().uuid(),
     name: z.string().nonempty(),
     email: z.string().email(),
 });

@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.S3Helper = void 0;
 const aws_sdk_1 = __importDefault(require("aws-sdk"));
+const xlsx_1 = __importDefault(require("xlsx"));
 class S3Helper {
     constructor() {
         this.get = (bucket, key) => __awaiter(this, void 0, void 0, function* () {
@@ -25,8 +26,34 @@ class S3Helper {
             const s3 = new aws_sdk_1.default.S3();
             const data = yield s3.getObject({ Key: key, Bucket: bucket }).promise();
             if (!data || !data.Body)
-                throw new Error('An error occurred trying to get file from Bucket');
+                throw new Error("An error occurred trying to get file from Bucket");
             return data.Body.toString();
+        });
+        this.readExcel = (bucket, key) => __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => {
+                const s3 = new aws_sdk_1.default.S3();
+                const file = s3
+                    .getObject({ Key: key, Bucket: bucket })
+                    .createReadStream();
+                try {
+                    const buffers = [];
+                    file.on("data", function (data) {
+                        buffers.push(data);
+                    });
+                    file.on("end", function () {
+                        const buffer = Buffer.concat(buffers);
+                        const workbook = xlsx_1.default.read(buffer);
+                        var sheetNameList = workbook.SheetNames;
+                        const userList = sheetNameList.length
+                            ? xlsx_1.default.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]])
+                            : [];
+                        resolve(userList);
+                    });
+                }
+                catch (err) {
+                    reject([]);
+                }
+            });
         });
     }
 }

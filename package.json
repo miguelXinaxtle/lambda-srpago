@@ -32,8 +32,11 @@
     "aws-sdk": "^2.996.0",
     "cross-env": "^7.0.3",
     "dotenv-safe": "^8.2.0",
+    "node-xlsx": "^0.17.2",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.6.0",
+    "uuid": "^8.3.2",
+    "xlsx": "^0.17.2",
     "zod": "^3.8.2"
   }
 }

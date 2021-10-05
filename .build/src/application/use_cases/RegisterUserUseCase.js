@@ -21,44 +21,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserRepository = void 0;
-const S3Helper_1 = require("./../util/S3Helper");
+exports.RegisterUserUseCase = void 0;
 const tsyringe_1 = require("tsyringe");
-const uuid_1 = require("uuid");
-let UserRepository = class UserRepository {
-    constructor(dbHelper) {
-        this.dbHelper = dbHelper;
-        this.getUsersByFile = (urlFile) => __awaiter(this, void 0, void 0, function* () {
-            const s3 = new S3Helper_1.S3Helper();
-            return yield s3.readExcel("onexlab", urlFile);
-        });
-        this.createUser = (user) => __awaiter(this, void 0, void 0, function* () {
-            yield this.dbHelper.put("User", user);
-        });
-        this.updateUser = (user) => __awaiter(this, void 0, void 0, function* () {
-            yield this.dbHelper.put("User", user);
-        });
-    }
-    registerUsers(userList) {
-        return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                for (const item of userList)
-                    yield this.dbHelper.put("User", Object.assign(Object.assign({}, item), { id: (0, uuid_1.v4)() }));
-                resolve(true);
+let RegisterUserUseCase = class RegisterUserUseCase {
+    constructor(userRepo) {
+        this.userRepo = userRepo;
+        this.execute = (urlFile) => __awaiter(this, void 0, void 0, function* () {
+            const userList = yield this.userRepo.getUsersByFile(urlFile);
+            if (userList.length) {
+                yield this.userRepo.registerUsers(userList);
             }
-            catch (err) {
-                reject(false);
-            }
-        }));
-    }
-    getUsers() {
-        return this.dbHelper.get("User");
+            return `Elementos insertados ${userList.length}`;
+        });
     }
 };
-UserRepository = __decorate([
+RegisterUserUseCase = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)("IDBHelper")),
+    __param(0, (0, tsyringe_1.inject)("IUserRepository")),
     __metadata("design:paramtypes", [Object])
-], UserRepository);
-exports.UserRepository = UserRepository;
-//# sourceMappingURL=UserRepository.js.map
+], RegisterUserUseCase);
+exports.RegisterUserUseCase = RegisterUserUseCase;
+//# sourceMappingURL=RegisterUserUseCase.js.map
