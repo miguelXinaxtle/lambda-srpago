@@ -8,7 +8,6 @@ import { APIGatewayProxyEvent } from "aws-lambda";
 import * as fs from "fs";
 import path from "path";
 import { NIL as NIL_UUID } from "uuid";
-import { v4 as uuidv4 } from "uuid";
 
 describe("UserController", () => {
   describe("createUser", () => {
@@ -19,9 +18,9 @@ describe("UserController", () => {
       );
       const apiProxyEvent: APIGatewayProxyEvent = JSON.parse(rawdata);
       const user = {
-        id: uuidv4(),
-        name: "pratik",
-        email: "abcd@gmail.com",
+        id: NIL_UUID,
+        name: "test prueba",
+        email: "test@gmail.com",
       };
 
       apiProxyEvent.body = JSON.stringify(user);
