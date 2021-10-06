@@ -5,6 +5,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { User, UserSchema } from "../../core/types/User";
 import { IRegisterUserUseCase } from "@src/core/interfaces/IRegisterUserUseCase";
 import { IGetUsersUseCase } from "@src/core/interfaces/IGetUsersUseCase";
+import { NIL as NIL_UUID } from "uuid";
 
 @injectable()
 export class UserController {
@@ -21,6 +22,7 @@ export class UserController {
     event: APIGatewayProxyEvent
   ): Promise<APIGatewayProxyResult> => {
     const user: User = UserSchema.parse({
+      id: NIL_UUID,
       name: "Renata",
       email: "renata.reyes@hotmail.com",
     });
